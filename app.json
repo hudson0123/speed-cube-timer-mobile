@@ -2,10 +2,12 @@
   "expo": {
     "name": "cube-timer-app",
     "slug": "cube-timer-app",
+    "scheme": "cubertimerapp",
     "version": "1.0.0",
     "entryPoint": "expo-router/entry",
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
     },
     "experiments": {
       "tsconfigPaths": true

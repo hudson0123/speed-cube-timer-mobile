@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 export default function Stats() {
   return (
     <View>
-      <Text>Stats</Text>
+      <Text>HI</Text>
     </View>
   )
 }
