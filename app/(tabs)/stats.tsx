@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, Pressable, ScrollView } from 'react-native';
 import { useTimes } from 'contexts/TimesContext';
 
 export default function Stats() {
@@ -18,8 +18,63 @@ export default function Stats() {
   };
 
   return (
-    <View className="flex-1 items-left justify-start bg-gray-300 pt-20">
-      <Text className="text-4xl font-bold p-5 text-black">Stats</Text>
+    <View className="flex-1 bg-black px-4 pt-16">
+      {/* Header */}
+      <Text className="mb-3 text-4xl font-bold text-white">Stats</Text>
+      <Text className="mb-2 text-sm text-gray-300">Session</Text>
+      {/* Main Content */}
+      <View className="flex-row">
+        {/* LEFT SIDE */}
+        <View className="mr-3 flex-1">
+          <Pressable className="mb-4 rounded-lg bg-gray-700 py-2">
+            <Text className="text-center font-semibold text-white">Default</Text>
+          </Pressable>
+          <ScrollView className="flex-1 rounded-lg bg-gray-800" />
+        </View>
+
+        {/* RIGHT SIDE */}
+        <View className="flex-1">
+          {/* Solve Count */}
+          <View className="mb-3 rounded-lg bg-gray-800 p-2">
+            <Text className="mb-2 text-gray-400">SOLVE COUNT</Text>
+            <Text className="text-2xl font-bold text-white">23</Text>
+          </View>
+
+          {/* Best Solve */}
+          <View className="mb-3 rounded-lg bg-gray-800 p-2">
+            <Text className="mb-2 text-gray-400">BEST SOLVE</Text>
+            <Text className="text-2xl font-bold text-white">9.234</Text>
+          </View>
+
+          {/* Current */}
+          <View className="mb-3 rounded-lg bg-gray-800 p-2">
+            <Text className="mb-2 text-gray-400">CURRENT</Text>
+            <Text className="mb-1 text-white">AO5</Text>
+            <Text className="font-semibold text-2xl mb-2 text-white">11.345</Text>
+            <Text className="mb-1 text-white">AO12</Text>
+            <Text className="font-semibold text-2xl mb-2 text-white">13.345</Text>
+            <Text className="mb-1 text-white">AO100</Text>
+            <Text className="font-semibold text-2xl mb-2 text-white">13.525</Text>
+          </View>
+
+          {/* Best */}
+          <View className="mb-3 rounded-lg bg-gray-800 p-2">
+            <Text className="mb-2 text-gray-400">BEST</Text>
+            <Text className="mb-1 text-white">AO5</Text>
+            <Text className="font-semibold text-2xl mb-2 text-white">11.345</Text>
+            <Text className="mb-1 text-white">AO12</Text>
+            <Text className="font-semibold text-2xl mb-2 text-white">13.345</Text>
+            <Text className="mb-1 text-white">AO100</Text>
+            <Text className="font-semibold text-2xl mb-2 text-white">13.525</Text>
+          </View>
+
+          {/* Session Mean */}
+          <View className="rounded-lg bg-gray-800 p-2">
+            <Text className="mb-2 text-gray-400">SESSION MEAN</Text>
+            <Text className="text-2xl font-bold text-white">14.377</Text>
+          </View>
+        </View>
+      </View>
     </View>
   );
 }
