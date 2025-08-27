@@ -29,14 +29,16 @@ export default function Stats() {
           <Pressable className="mb-4 rounded-lg bg-gray-700 py-2">
             <Text className="text-center font-semibold text-white">Default</Text>
           </Pressable>
-          <ScrollView className="flex-1 rounded-lg bg-gray-800 p-2">
+          <View className='flex-1 rounded-lg bg-gray-800 p-2'>
             <Text className="mb-2 text-gray-400">RECENT TIMES</Text>
-            {times.map((time) => (
-              <View key={time} className='bg-gray-500 mb-2 rounded p-1'>
-                <Text className='text-xl text-white font-semibold'>{formatTime(time)}</Text>
-              </View>
-            ))}
-          </ScrollView>
+            <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
+              {times.map((time) => (
+                <View key={time} className='bg-gray-500 mb-2 rounded p-1'>
+                  <Text className='text-xl text-white font-semibold'>{formatTime(time)}</Text>
+                </View>
+              ))}
+            </ScrollView>
+          </View>
         </View>
 
         {/* RIGHT SIDE */}
@@ -44,13 +46,13 @@ export default function Stats() {
           {/* Solve Count */}
           <View className="mb-3 rounded-lg bg-gray-800 p-2">
             <Text className="mb-2 text-gray-400">SOLVE COUNT</Text>
-            <Text className="ml-1 text-2xl font-bold text-white">23</Text>
+            <Text className="ml-1 text-2xl font-bold text-white">{times.length}</Text>
           </View>
 
           {/* Best Solve */}
           <View className="mb-3 rounded-lg bg-gray-800 p-2">
             <Text className="mb-2 text-gray-400">BEST SOLVE</Text>
-            <Text className="ml-1 text-2xl font-bold text-white">9.234</Text>
+            <Text className="ml-1 text-2xl font-bold text-white">{formatTime(Math.min(...times))}</Text>
           </View>
 
           {/* Current */}
@@ -82,7 +84,7 @@ export default function Stats() {
           {/* Session Mean */}
           <View className="rounded-lg bg-gray-800 p-2">
             <Text className="mb-2 text-gray-400">SESSION MEAN</Text>
-            <Text className="ml-1 text-2xl font-bold text-white">14.377</Text>
+            <Text className="ml-1 text-2xl font-bold text-white">{formatTime(Math.floor((times.reduce((accumulator, currentValue) => accumulator + currentValue, 0)) / times.length))}</Text>
           </View>
         </View>
       </View>

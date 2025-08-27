@@ -3,8 +3,8 @@ import { View, Text } from 'react-native'
 
 export default function Appearance() {
   return (
-    <View>
-      <Text>Appearance Settings</Text>
+    <View className='bg-black h-screen'>
+      <Text className='text-white text-4xl'>Appearance Settings</Text>
     </View>
   )
 }
