@@ -5,7 +5,7 @@ import { View } from 'react-native';
 export default function TabLayout() {
   return (
     <Tabs initialRouteName="timer" screenOptions={{
-        tabBarActiveTintColor: 'white', 
+        tabBarActiveTintColor: 'white',
         headerShown: false,
         tabBarBackground: () => {
           return (
@@ -43,10 +43,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="account"
+        name="settings"
         options={{
-          title: 'Account',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="user" color={color} />,
+          title: 'Settings',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
         }}
       />
     </Tabs>

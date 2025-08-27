@@ -18,13 +18,8 @@ export default function Stats() {
   };
 
   return (
-    <View className="flex-1 items-center justify-center">
-      <Text className="text-center text-lg mb-2 text-green-500">Times:</Text>
-      {times.map((t, index) => (
-        <View key={index} className="m-2 rounded-md bg-gray-200 p-2">
-          <Text>{formatTime(t)}</Text>
-        </View>
-      ))}
+    <View className="flex-1 items-left justify-start bg-gray-300 pt-20">
+      <Text className="text-4xl font-bold p-5 text-black">Stats</Text>
     </View>
   );
 }

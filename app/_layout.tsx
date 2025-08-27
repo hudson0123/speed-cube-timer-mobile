@@ -8,7 +8,7 @@ export default function _layout() {
     <TimesProvider>
       <View className="flex-1 bg-black">
         <Stack>
-          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="(tabs)"  options={{ headerShown: false }} />
           <Stack.Screen name="general" options={{ headerShown: true, title: 'General Settings' }} />
           <Stack.Screen name="appearance" options={{ headerShown: true, title: 'Appearance Settings' }} />
           <Stack.Screen name="about" options={{ headerShown: true, title: 'Help & About Us' }} />
