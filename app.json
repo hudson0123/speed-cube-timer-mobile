@@ -1,5 +1,6 @@
 {
   "expo": {
+    "backgroundColor": "#000000",
     "name": "cube-timer-app",
     "slug": "cube-timer-app",
     "scheme": "cubertimerapp",
@@ -27,12 +28,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "backgroundColor": "#000000"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
       }
     }
   }
