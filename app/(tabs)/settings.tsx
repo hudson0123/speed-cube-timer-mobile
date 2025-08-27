@@ -5,8 +5,8 @@ import { Link } from 'expo-router';
 
 export default function Settings() {
   return (
-    <View className='pt-20 bg-gray-300 h-screen'>
-      <Text className="text-4xl font-bold p-5 text-black">Settings</Text>
+    <View className='pt-20 bg-black h-screen'>
+      <Text className="text-4xl font-bold p-5 text-white">Settings</Text>
       <View className="flex-row justify-center items-center">
         <Link href="/general" asChild>
           <Pressable className="relative flex-1 bg-gray-600 rounded-xl p-4 m-2 h-48">

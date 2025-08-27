@@ -29,7 +29,14 @@ export default function Stats() {
           <Pressable className="mb-4 rounded-lg bg-gray-700 py-2">
             <Text className="text-center font-semibold text-white">Default</Text>
           </Pressable>
-          <ScrollView className="flex-1 rounded-lg bg-gray-800" />
+          <ScrollView className="flex-1 rounded-lg bg-gray-800 p-2">
+            <Text className="mb-2 text-gray-400">RECENT TIMES</Text>
+            {times.map((time) => (
+              <View key={time} className='bg-gray-500 mb-2 rounded p-1'>
+                <Text className='text-xl text-white font-semibold'>{formatTime(time)}</Text>
+              </View>
+            ))}
+          </ScrollView>
         </View>
 
         {/* RIGHT SIDE */}
