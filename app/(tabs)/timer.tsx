@@ -1,11 +1,12 @@
 import { View, SafeAreaView, Text, Pressable } from 'react-native';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useTimes } from 'contexts/TimesContext';
 
 export default function Timer() {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [isReady, setIsReady] = useState(false);
-  const [times, setTimes] = useState<number[]>([]);
+  const { times, setTimes, addTime, clearTimes } = useTimes();
 
   const startTimeRef = useRef<any>(null);
   const animationFrameRef = useRef<any>(null);
