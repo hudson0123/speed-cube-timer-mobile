@@ -130,8 +130,8 @@ export default function Timer() {
 
   return (
     <View className='flex-1'>
-      <Pressable className="flex-1 justify-center items-center" onLongPress={handleTimerPress}>
-        <Text className={`text-4xl text-blue-600 ${isReady ? 'bg-green-500' : 'text-black'}`}>{formatTime(time)}</Text>
+      <Pressable className="flex-1 justify-center items-center" onPress={handleTimerPress}>
+        <Text className={`text-4xl ${isReady ? 'text-green-500' : 'text-black'}`}>{formatTime(time)}</Text>
       </Pressable>
       <View>
         <Text className="text-center text-lg mb-2 text-green-500">Times:</Text>
