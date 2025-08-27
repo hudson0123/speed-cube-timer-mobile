@@ -17,6 +17,12 @@ export default function Stats() {
     return `${seconds}.${milliseconds.toString().padStart(3, '0')}`;
   };
 
+  const calculateAverageOfFive = (times: number[]) => {
+    const sortedTimes = [...times].sort((a, b) => a - b)
+    const middleThreeTotal = sortedTimes.slice(1,4).reduce((acc, curr) => acc + curr)
+    return Math.floor(middleThreeTotal / 3)
+  }
+
   return (
     <View className="flex-1 bg-black px-4 pt-16">
       {/* Header */}
@@ -60,7 +66,7 @@ export default function Stats() {
             <Text className="mb-2 text-gray-400">CURRENT</Text>
             <View className='ml-1'>
               <Text className="mb-1 text-white">AO5</Text>
-              <Text className="font-semibold text-2xl mb-2 text-white">11.345</Text>
+              <Text className="font-semibold text-2xl mb-2 text-white">{formatTime(calculateAverageOfFive(times))}</Text>
               <Text className="mb-1 text-white">AO12</Text>
               <Text className="font-semibold text-2xl mb-2 text-white">13.345</Text>
               <Text className="mb-1 text-white">AO100</Text>
