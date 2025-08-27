@@ -37,41 +37,45 @@ export default function Stats() {
           {/* Solve Count */}
           <View className="mb-3 rounded-lg bg-gray-800 p-2">
             <Text className="mb-2 text-gray-400">SOLVE COUNT</Text>
-            <Text className="text-2xl font-bold text-white">23</Text>
+            <Text className="ml-1 text-2xl font-bold text-white">23</Text>
           </View>
 
           {/* Best Solve */}
           <View className="mb-3 rounded-lg bg-gray-800 p-2">
             <Text className="mb-2 text-gray-400">BEST SOLVE</Text>
-            <Text className="text-2xl font-bold text-white">9.234</Text>
+            <Text className="ml-1 text-2xl font-bold text-white">9.234</Text>
           </View>
 
           {/* Current */}
           <View className="mb-3 rounded-lg bg-gray-800 p-2">
             <Text className="mb-2 text-gray-400">CURRENT</Text>
-            <Text className="mb-1 text-white">AO5</Text>
-            <Text className="font-semibold text-2xl mb-2 text-white">11.345</Text>
-            <Text className="mb-1 text-white">AO12</Text>
-            <Text className="font-semibold text-2xl mb-2 text-white">13.345</Text>
-            <Text className="mb-1 text-white">AO100</Text>
-            <Text className="font-semibold text-2xl mb-2 text-white">13.525</Text>
+            <View className='ml-1'>
+              <Text className="mb-1 text-white">AO5</Text>
+              <Text className="font-semibold text-2xl mb-2 text-white">11.345</Text>
+              <Text className="mb-1 text-white">AO12</Text>
+              <Text className="font-semibold text-2xl mb-2 text-white">13.345</Text>
+              <Text className="mb-1 text-white">AO100</Text>
+              <Text className="font-semibold text-2xl text-white">13.525</Text>
+            </View>
           </View>
 
           {/* Best */}
           <View className="mb-3 rounded-lg bg-gray-800 p-2">
             <Text className="mb-2 text-gray-400">BEST</Text>
-            <Text className="mb-1 text-white">AO5</Text>
-            <Text className="font-semibold text-2xl mb-2 text-white">11.345</Text>
-            <Text className="mb-1 text-white">AO12</Text>
-            <Text className="font-semibold text-2xl mb-2 text-white">13.345</Text>
-            <Text className="mb-1 text-white">AO100</Text>
-            <Text className="font-semibold text-2xl mb-2 text-white">13.525</Text>
+            <View className='ml-1'>
+              <Text className="mb-1 text-white">AO5</Text>
+              <Text className="font-semibold text-2xl mb-2 text-white">11.345</Text>
+              <Text className="mb-1 text-white">AO12</Text>
+              <Text className="font-semibold text-2xl mb-2 text-white">13.345</Text>
+              <Text className="mb-1 text-white">AO100</Text>
+              <Text className="font-semibold text-2xl text-white">13.525</Text>
+            </View>
           </View>
 
           {/* Session Mean */}
           <View className="rounded-lg bg-gray-800 p-2">
             <Text className="mb-2 text-gray-400">SESSION MEAN</Text>
-            <Text className="text-2xl font-bold text-white">14.377</Text>
+            <Text className="ml-1 text-2xl font-bold text-white">14.377</Text>
           </View>
         </View>
       </View>
