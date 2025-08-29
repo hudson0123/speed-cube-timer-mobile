@@ -17,12 +17,6 @@ export default function Stats() {
     return `${seconds}.${milliseconds.toString().padStart(3, '0')}`;
   };
 
-  const calculateAverageOfFive = (times: number[]) => {
-    const sortedTimes = [...times].sort((a, b) => a - b)
-    const middleThreeTotal = sortedTimes.slice(1,4).reduce((acc, curr) => acc + curr)
-    return Math.floor(middleThreeTotal / 3)
-  }
-
   return (
     <View className="flex-1 bg-black px-4 pt-16">
       {/* Header */}
@@ -39,8 +33,8 @@ export default function Stats() {
             <Text className="mb-2 text-gray-400">RECENT TIMES</Text>
             <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
               {times.map((time) => (
-                <View key={time} className='bg-gray-500 mb-2 rounded p-1'>
-                  <Text className='text-xl text-white font-semibold'>{formatTime(time)}</Text>
+                <View key={time.id} className='bg-gray-500 mb-2 rounded p-1'>
+                  <Text className='text-xl text-white font-semibold'>{formatTime(time.time)}</Text>
                 </View>
               ))}
             </ScrollView>
@@ -58,7 +52,7 @@ export default function Stats() {
           {/* Best Solve */}
           <View className="mb-3 rounded-lg bg-gray-800 p-2">
             <Text className="mb-2 text-gray-400">BEST SOLVE</Text>
-            <Text className="ml-1 text-2xl font-bold text-white">{formatTime(Math.min(...times))}</Text>
+            <Text className="ml-1 text-2xl font-bold text-white">TODO</Text>
           </View>
 
           {/* Current */}
@@ -66,11 +60,11 @@ export default function Stats() {
             <Text className="mb-2 text-gray-400">CURRENT</Text>
             <View className='ml-1'>
               <Text className="mb-1 text-white">AO5</Text>
-              <Text className="font-semibold text-2xl mb-2 text-white">{formatTime(calculateAverageOfFive(times))}</Text>
+              <Text className="font-semibold text-2xl mb-2 text-white">{times.at(-1)?.ao5 ?? "-"}</Text>
               <Text className="mb-1 text-white">AO12</Text>
-              <Text className="font-semibold text-2xl mb-2 text-white">13.345</Text>
+              <Text className="font-semibold text-2xl mb-2 text-white">{times.at(-1)?.ao12 ?? "-"}</Text>
               <Text className="mb-1 text-white">AO100</Text>
-              <Text className="font-semibold text-2xl text-white">13.525</Text>
+              <Text className="font-semibold text-2xl text-white">{times.at(-1)?.ao100 ?? "-"}</Text>
             </View>
           </View>
 
@@ -79,18 +73,18 @@ export default function Stats() {
             <Text className="mb-2 text-gray-400">BEST</Text>
             <View className='ml-1'>
               <Text className="mb-1 text-white">AO5</Text>
-              <Text className="font-semibold text-2xl mb-2 text-white">11.345</Text>
+              <Text className="font-semibold text-2xl mb-2 text-white">TODO</Text>
               <Text className="mb-1 text-white">AO12</Text>
-              <Text className="font-semibold text-2xl mb-2 text-white">13.345</Text>
+              <Text className="font-semibold text-2xl mb-2 text-white">TODO</Text>
               <Text className="mb-1 text-white">AO100</Text>
-              <Text className="font-semibold text-2xl text-white">13.525</Text>
+              <Text className="font-semibold text-2xl text-white">TODO</Text>
             </View>
           </View>
 
           {/* Session Mean */}
           <View className="rounded-lg bg-gray-800 p-2">
             <Text className="mb-2 text-gray-400">SESSION MEAN</Text>
-            <Text className="ml-1 text-2xl font-bold text-white">{formatTime(Math.floor((times.reduce((accumulator, currentValue) => accumulator + currentValue, 0)) / times.length))}</Text>
+            <Text className="ml-1 text-2xl font-bold text-white">{times.length > 0 ? formatTime(Math.floor((times.reduce((accumulator, currentValue) => accumulator + currentValue.time, 0)) / times.length)) : "-"}</Text>
           </View>
         </View>
       </View>

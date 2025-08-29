@@ -1,18 +1,26 @@
 import React, { useState, createContext, useContext } from 'react'
 
+interface timeMetadataInterface {
+  id: number,
+  time: number,
+  ao5: number | null,
+  ao12: number | null,
+  ao100: number | null,
+}
+
 interface TimesContextInterface {
-  times: number[]
-  setTimes: React.Dispatch<React.SetStateAction<number[]>>
-  addTime: (time: number) => void
+  times: timeMetadataInterface[]
+  setTimes: React.Dispatch<React.SetStateAction<timeMetadataInterface[]>>
+  addTime: (time: timeMetadataInterface) => void
   clearTimes: () => void
 }
 
 const TimesContext = createContext<TimesContextInterface | undefined>(undefined)
 
 export function TimesProvider({ children }: any) {
-  const [times, setTimes] = useState<number[]>([])
+  const [times, setTimes] = useState<timeMetadataInterface[]>([])
 
-  const addTime = (time: number) => {
+  const addTime = (time: timeMetadataInterface) => {
     setTimes([...times, time])
   }
 

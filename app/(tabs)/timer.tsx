@@ -3,6 +3,15 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useTimes } from 'contexts/TimesContext';
 
 export default function Timer() {
+
+  interface timeMetadataInterface {
+    id: number,
+    time: number,
+    ao5: number | null,
+    ao12: number | null,
+    ao100: number | null,
+  }
+  
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [isReady, setIsReady] = useState(false);
@@ -11,6 +20,24 @@ export default function Timer() {
   const startTimeRef = useRef<any>(null);
   const animationFrameRef = useRef<any>(null);
   const readyTimeoutRef = useRef<any>(null);
+
+  const calculateAverageOfFive = (times: number[]) => {
+    const sortedTimes = [...times].sort((a, b) => a - b)
+    const middleThreeTotal = sortedTimes.slice(1,4).reduce((acc, curr) => acc + curr)
+    return Math.floor(middleThreeTotal / 3)
+  }
+
+  const calculateAverageOfTwelve = (times: number[]) => {
+    const sortedTimes = [...times].sort((a, b) => a - b)
+    const middleThreeTotal = sortedTimes.slice(1,11).reduce((acc, curr) => acc + curr)
+    return Math.floor(middleThreeTotal / 3)
+  }
+
+  const calculateAverageOfHundred = (times: number[]) => {
+    const sortedTimes = [...times].sort((a, b) => a - b)
+    const middleThreeTotal = sortedTimes.slice(5,94).reduce((acc, curr) => acc + curr)
+    return Math.floor(middleThreeTotal / 3)
+  }
 
   const formatTime = (ms: number) => {
     const seconds = Math.floor(ms / 1000);
@@ -88,9 +115,27 @@ export default function Timer() {
       // Update display with final time
       setTime(roundedTime);
 
+      let ao5: number | null, ao12: number | null, ao100: number | null = null
+
+      if (times.length >= 4) {
+        ao5 = calculateAverageOfFive([...times.map((time) => time.time).slice(-4), roundedTime])
+        if (times.length >=11) {
+          ao12 = calculateAverageOfTwelve([...times.map((time) => time.time).slice(-11), roundedTime])
+          if (times.length >=99) {
+            ao100 = calculateAverageOfHundred([...times.map((time) => time.time).slice(-99), roundedTime])
+          }
+        }
+      }
+
       // Add to solve history for statistics
       // Each solve is stored as milliseconds for consistent calculations
-      setTimes((prev) => [...prev, roundedTime]);
+      setTimes((prev) => [...prev, {
+        id: times.length + 1,
+        time: roundedTime,
+        ao5: ao5,
+        ao12: ao12,
+        ao100: ao100,
+      }]);
 
       // Clear start reference for next solve
       startTimeRef.current = null;
