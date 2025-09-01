@@ -7,12 +7,11 @@ export default function Timer() {
   interface timeMetadataInterface {
     id: number,
     time: number,
-    ao5: number | null,
-    ao12: number | null,
-    ao100: number | null,
+    scramble: string
   }
   
   const [time, setTime] = useState(0);
+  const [currentScramble, setCurrentScramble] = useState("")
   const [isRunning, setIsRunning] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const { times, setTimes, addTime, clearTimes } = useTimes();
@@ -20,24 +19,6 @@ export default function Timer() {
   const startTimeRef = useRef<any>(null);
   const animationFrameRef = useRef<any>(null);
   const readyTimeoutRef = useRef<any>(null);
-
-  const calculateAverageOfFive = (times: number[]) => {
-    const sortedTimes = [...times].sort((a, b) => a - b)
-    const middleThreeTotal = sortedTimes.slice(1,4).reduce((acc, curr) => acc + curr)
-    return Math.floor(middleThreeTotal / 3)
-  }
-
-  const calculateAverageOfTwelve = (times: number[]) => {
-    const sortedTimes = [...times].sort((a, b) => a - b)
-    const middleThreeTotal = sortedTimes.slice(1,11).reduce((acc, curr) => acc + curr)
-    return Math.floor(middleThreeTotal / 3)
-  }
-
-  const calculateAverageOfHundred = (times: number[]) => {
-    const sortedTimes = [...times].sort((a, b) => a - b)
-    const middleThreeTotal = sortedTimes.slice(5,94).reduce((acc, curr) => acc + curr)
-    return Math.floor(middleThreeTotal / 3)
-  }
 
   const formatTime = (ms: number) => {
     const seconds = Math.floor(ms / 1000);
@@ -51,6 +32,25 @@ export default function Timer() {
     // For times over 1 second, show "ss.xxx" format
     return `${seconds}.${milliseconds.toString().padStart(3, '0')}`;
   };
+
+  const createScramble = (moveCount: number): string => {
+
+      const SCRAMBLE_MOVES = [
+        "U", "U'", "U2",
+        "D", "D'", "D2",
+        "L", "L'", "L2",
+        "R", "R'", "R2",
+        "F", "F'", "F2",
+        "B", "B'", "B2"
+      ]
+
+      let scramble = ""
+      for (let i = 0; i < moveCount; i++) {
+        const randomIndex = Math.floor(Math.random() * SCRAMBLE_MOVES.length)
+        scramble = scramble + " " + SCRAMBLE_MOVES[randomIndex]
+      }
+      return scramble
+  }
 
   const updateTimer = useCallback(() => {
     if (startTimeRef.current) {
@@ -115,27 +115,15 @@ export default function Timer() {
       // Update display with final time
       setTime(roundedTime);
 
-      let ao5: number | null, ao12: number | null, ao100: number | null = null
-
-      if (times.length >= 4) {
-        ao5 = calculateAverageOfFive([...times.map((time) => time.time).slice(-4), roundedTime])
-        if (times.length >=11) {
-          ao12 = calculateAverageOfTwelve([...times.map((time) => time.time).slice(-11), roundedTime])
-          if (times.length >=99) {
-            ao100 = calculateAverageOfHundred([...times.map((time) => time.time).slice(-99), roundedTime])
-          }
-        }
-      }
-
       // Add to solve history for statistics
       // Each solve is stored as milliseconds for consistent calculations
       setTimes((prev) => [...prev, {
         id: times.length + 1,
         time: roundedTime,
-        ao5: ao5,
-        ao12: ao12,
-        ao100: ao100,
+        scramble: currentScramble,
       }]);
+
+      setCurrentScramble(createScramble(20))
 
       // Clear start reference for next solve
       startTimeRef.current = null;
@@ -174,8 +162,15 @@ export default function Timer() {
     }
   }
 
+  useEffect(() => {
+    setCurrentScramble(createScramble(20))
+  }, [])
+
   return (
-    <View className='flex-1 bg-black'>
+    <View className='relative flex-1 bg-black'>
+    <Text className='absolute text-white text-3xl flex-1 mt-32  mx-auto px-10 text-center'>
+      {currentScramble|| "Loading..."}
+    </Text>
       <Pressable className="flex-1 justify-center items-center" onPress={handleTimerPress}>
         <Text className={`text-7xl font-light ${isReady ? 'text-green-500' : 'text-white'}`}>{formatTime(time)}</Text>
       </Pressable>

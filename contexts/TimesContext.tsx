@@ -3,9 +3,7 @@ import React, { useState, createContext, useContext } from 'react'
 interface timeMetadataInterface {
   id: number,
   time: number,
-  ao5: number | null,
-  ao12: number | null,
-  ao100: number | null,
+  scramble: string,
 }
 
 interface TimesContextInterface {
