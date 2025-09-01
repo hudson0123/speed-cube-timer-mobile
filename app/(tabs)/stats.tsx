@@ -113,7 +113,7 @@ export default function Stats() {
           <View className="mb-3 rounded-lg bg-gray-800 p-2">
             <Text className="mb-2 text-gray-400">BEST SOLVE</Text>
             <Text className="ml-1 text-2xl font-bold text-white">
-              {formatTime(Math.min(...times.map((time) => time.time)))}
+              {times.length > 0 ? formatTime(Math.min(...times.map((time) => time.time))) : "-"}
             </Text>
           </View>
 
